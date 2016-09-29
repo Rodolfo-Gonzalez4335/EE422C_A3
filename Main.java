@@ -1,8 +1,8 @@
 /* WORD LADDER Main.java
  * EE422C Project 3 submission by
  * Replace <...> with your actual data.
- * <Student1 Name>
- * <Student1 EID>
+ * Rodolfo Gonzalez
+ * rg36763
  * <Student1 5-digit Unique No.>
  * <Student2 Name>
  * <Student2 EID>
@@ -18,8 +18,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-	
-	// static variables and constants only here.
+	static String start,end;
 	
 	public static void main(String[] args) throws Exception {
 		
@@ -35,48 +34,82 @@ public class Main {
 			ps = System.out;			// default to Stdout
 		}
 		initialize();
-		printLadder(getWordLadderDFS("STORE","ZONES"));
 		
-		// TODO methods to read in words, output ladder
+		Scanner input = new Scanner(System.in);
+		
+		while (true)
+		{
+			ArrayList<String> lettercheck=(parse(input));
+			printLadder(getWordLadderBFS(lettercheck.get(0), lettercheck.get(1)));
+		}
+		
 	}
 	
 	public static void initialize() {
-		// initialize your static variables or constants here.
-		// We will call this method before running our JUNIT tests.  So call it 
-		// only once at the start of main.
+		
 	}
 	
 	/**
+	 * Method reads the input.
+	 * 
 	 * @param keyboard Scanner connected to System.in
-	 * @return ArrayList of 2 Strings containing start word and end word. 
-	 * If command is /quit, return empty ArrayList. 
+	 * 
+	 * @return ArrayList of 2 Strings containing start word and end word.  
 	 */
 	public static ArrayList<String> parse(Scanner keyboard) {
-		// TO DO
-		return null;
+		
+		ArrayList<String> inputs = new ArrayList<String>();
+		
+		start=keyboard.nextLine();
+		start= start.toUpperCase();
+		
+		end = keyboard.nextLine();
+		end = end.toUpperCase();
+		
+		inputs.add(start);
+		inputs.add(end);
+		
+		if (start.equals("/quit")|| end.equals("/quit"))
+			System.exit(0);
+		
+		return inputs;
 	}
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
-		// Returned list should be ordered start to end.  Include start and end.
-		// Return empty list if no ladder.
-		// TODO some code
-		
 		Set<String> dict = makeDictionary();
-		// TODO more code
-		DFSLadder.generateLadder(start, end, dict);
-		return DFSLadder.getLadder(); // replace this line later with real return
+		//return null; // replace this line later with real return
+
+		//DFSLadder.generateLadder(start,end,dict);
+		//return DFSLadder.getLadder();
+		
+		return null;//remove
 	}
 	
+	/**
+	 * This method gets a word ladder using the BFS algorithm.
+	 * 
+	 * @param start beginning of the word ladder to be found
+	 * @param end  ending of the word ladder to be found
+	 * 
+	 * @return the word ladder list gotten
+	 * */
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
 		
-		// TODO some code
-		Set<String> dict = makeDictionary();
-		// TODO more code
+    	Set<String> dict = makeDictionary();
+		BFS idk= new BFS(start,end,dict);
+		idk.setLadder();
+		//idk.reverseLadder();//this happens because the word ladder is gotten backwards
+		return idk.getLadder();
 		
-		return null; // replace this line later with real return
 	}
     
+    /**
+     * This method reads a dictionary file and stores it in a set
+     * 
+     * @return the set read
+     * @return failed exits 1
+     * */
 	public static Set<String>  makeDictionary () {
 		Set<String> words = new HashSet<String>();
 		Scanner infile = null;
@@ -93,11 +126,26 @@ public class Main {
 		return words;
 	}
 	
+	/**
+	 * This method prints the ladder given
+	 * 
+	 * @param ladder: string list to be printed
+	 * */
 	public static void printLadder(ArrayList<String> ladder) {
-		for(int i = 0; i < ladder.size(); i++){
-			System.out.println(ladder.get(i));
+		
+		if (ladder.isEmpty())
+		{
+			System.out.println("no word ladder can be found between " 
+					+ start + " and " + end + ".");
+		}
+		
+		else
+		{
+			System.out.println("A " + (ladder.size()-2)+"-rung "
+					+ "word ladder exists between "+ start + " and " +end+".");
+			for (int i=0; i<ladder.size();i++)
+				System.out.println(ladder.get(i));
 		}
 	}
-	// TODO
-	// Other private static methods here
+	
 }
