@@ -4,11 +4,11 @@
  * Rodolfo Gonzalez
  * rg36763
  * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
+ * Rohan Kondetimmanahalli
+ * rak2369
  * <Student2 5-digit Unique No.>
  * Slip days used: <0>
- * Git URL:
+ * Git URL: https://github.com/Rodolfo-Gonzalez4335/EE422C_A3/
  * Fall 2016
  */
 
