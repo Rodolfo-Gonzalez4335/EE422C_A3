@@ -41,6 +41,8 @@ public class Main {
 		{
 			ArrayList<String> lettercheck=(parse(input));
 			printLadder(getWordLadderBFS(lettercheck.get(0), lettercheck.get(1)));
+			System.out.println("=========================");
+			printLadder(getWordLadderDFS(lettercheck.get(0), lettercheck.get(1)));
 		}
 		
 	}
@@ -78,12 +80,11 @@ public class Main {
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
 		Set<String> dict = makeDictionary();
-		//return null; // replace this line later with real return
-
-		//DFSLadder.generateLadder(start,end,dict);
-		//return DFSLadder.getLadder();
+		DFSLadder.clearStack();
+		DFSLadder.generateLadder(start,end,dict);
+	
+		return DFSLadder.getLadder();
 		
-		return null;//remove
 	}
 	
 	/**

@@ -24,8 +24,8 @@ public class DFSLadder {
 			for(char c='A'; c<='Z'; c++){
 				cStart[i] = c;
 				String newStart = new String(cStart);
-				if(!(DFSvisited.contains(newStart)))
-					if(dict.contains(newStart))
+				if(dict.contains(newStart))
+					if(!(DFSvisited.contains(newStart)))
 						if(generateLadder(newStart, end, dict) == false)
 							DFSstack.remove(DFSstack.size()-1);
 						else
@@ -36,7 +36,13 @@ public class DFSLadder {
 		return false;
 	}
 	
+	public static void clearStack(){
+		DFSstack.clear();
+		DFSvisited.clear();
+	}
 	public static ArrayList<String> getLadder(){
+		if(DFSstack.size() == 1)
+			DFSstack.remove(DFSstack.size()-1);
 		return DFSstack;
 	}
 	
