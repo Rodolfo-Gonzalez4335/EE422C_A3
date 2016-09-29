@@ -65,18 +65,29 @@ public class Main {
 		start=keyboard.nextLine();
 		start= start.toUpperCase();
 		
+		if (start.equals("/QUIT"))
+				System.exit(0);
+		
 		end = keyboard.nextLine();
 		end = end.toUpperCase();
 		
 		inputs.add(start);
 		inputs.add(end);
 		
-		if (start.equals("/quit")|| end.equals("/quit"))
+		if (end.equals("/QUIT"))
 			System.exit(0);
 		
 		return inputs;
 	}
 	
+	/**
+	 * This method gets the word ladder using the DFS algorithm
+	 * 
+	 * @param start is the beginning of the word ladder
+	 * @param end is the end of the word ladder
+	 * 
+	 * @return word ladder
+	 * */
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
 		Set<String> dict = makeDictionary();

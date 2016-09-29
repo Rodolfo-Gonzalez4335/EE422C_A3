@@ -1,3 +1,17 @@
+/* WORD LADDER Main.java
+ * EE422C Project 3 submission by
+ * Replace <...> with your actual data.
+ * Rodolfo Gonzalez
+ * rg36763
+ * <Student1 5-digit Unique No.>
+ * Rohan Kondetimmanahalli
+ * rak2369
+ * <Student2 5-digit Unique No.>
+ * Slip days used: <0>
+ * Git URL: https://github.com/Rodolfo-Gonzalez4335/EE422C_A3/
+ * Fall 2016
+ */
+
 package assignment3;
 
 import java.util.*;
@@ -6,7 +20,6 @@ public class BFS {
 	
 	private String start;
 	private String end;
-	private boolean quit=false;
 	private Set<String> Dictionary= new HashSet<String>(); 
 	private String abc_s="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private HashMap<String,String> AdjencyList = new HashMap<String,String>();
@@ -19,8 +32,6 @@ public class BFS {
 	
 	public BFS(String start, String end, Set<String> Dictionary)
 	{
-		if (start.equals("\\quit") || end.equals("\\quit"))
-			quit=true;
 		this.Dictionary.addAll(Dictionary);
 		this.start= start;
 		this.end=end;	
@@ -87,7 +98,7 @@ public class BFS {
 		ArrayList<String> queue= new ArrayList<String>();
 		queue.add(start);
 		
-		//the loop exits out immediately after
+		
 		while (true)
 		{
 			//adding elements to queue
@@ -147,7 +158,6 @@ public class BFS {
 	
 	public boolean setLadder()
 	{
-		if (quit==true) return false;
 		if (Algorithm()==false) 
 			return false;
 		MakeLadder();
@@ -159,7 +169,6 @@ public class BFS {
 	 * */
 	
 	public ArrayList<String> getLadder(){
-		if (quit==true) return null;
 		return Ladder;
 	}
 
